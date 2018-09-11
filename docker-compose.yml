@@ -50,6 +50,28 @@ services:
       # - ../woodhouse/:/usr/src/libraries/woodhouse
       - ../moonshine-core/:/usr/src/libraries/moonshine-core
 
+  moonshine-celery:
+    build:
+      context: ../
+      dockerfile: ./local_dev/celery-service.dockerfile
+      args:
+        dev_path: ./local_dev
+        github_token: ${GITHUB_TOKEN}
+        service_path: ./moonshine
+    command: celery worker --app celery_app --loglevel=info
+    entrypoint: /usr/src/entry.sh
+    depends_on:
+      - rabbitmq
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
+    volumes:
+      - ../moonshine:/usr/src/app
+      # - ../woodhouse/:/usr/src/libraries/woodhouse
+      - ../moonshine-core/:/usr/src/libraries/moonshine-core
+
   db:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
