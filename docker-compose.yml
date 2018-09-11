@@ -26,6 +26,30 @@ services:
       - ../chronotrigger:/usr/src/app
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
+  chrono-celery:
+    build:
+      context: ../
+      dockerfile: ./local_dev/celery-service.dockerfile
+      args:
+        dev_path: ./local_dev
+        github_token: ${GITHUB_TOKEN}
+        service_path: ./chronotrigger
+    command: celery worker --beat --scheduler django --app celery_app -l info
+    entrypoint: /usr/src/entry.sh
+    depends_on:
+      - db
+      - memcached
+      - mongo
+      - rabbitmq
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
+    volumes:
+      - ../chronotrigger:/usr/src/app
+      # - ../woodhouse/:/usr/src/libraries/woodhouse
+
   moonshine-api:
     build:
       context: ../
