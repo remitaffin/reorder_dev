@@ -13,6 +13,7 @@ RUN chmod +x $CODE_PATH/entry.sh
 
 COPY $service_path/requirements.txt ./
 RUN sed -i "s@git+ssh:\/\/git@git+https:\/\/$github_token@" requirements.txt
+RUN pip install watchdog
 
 RUN pip install --no-cache-dir -r requirements.txt
 
