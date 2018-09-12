@@ -13,7 +13,12 @@ RUN chmod +x $CODE_PATH/entry.sh
 
 COPY $service_path/requirements.txt ./
 RUN sed -i "s@git+ssh:\/\/git@git+https:\/\/$github_token@" requirements.txt
+
+# Package to auto reload celery workers
 RUN pip install watchdog
+
+# Libraries will be mounted to this folder
+RUN mkdir $CODE_PATH/libraries
 
 RUN pip install --no-cache-dir -r requirements.txt
 
