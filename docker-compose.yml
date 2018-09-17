@@ -107,7 +107,7 @@ services:
       args:
         dev_path: ./local_dev
         github_token: ${GITHUB_TOKEN}
-        service_path: ./moonshine
+        service_path: ./moonshine-celery
     command: celery worker --app celery_app --loglevel=info
     entrypoint: /usr/src/entry.sh
     depends_on:
@@ -118,7 +118,7 @@ services:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
     volumes:
-      - ../moonshine:/usr/src/app
+      - ../moonshine-celery:/usr/src/app
       # - ../woodhouse/:/usr/src/libraries/woodhouse
       # - ../moonshine-core/:/usr/src/libraries/moonshine-core
 
