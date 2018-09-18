@@ -34,7 +34,7 @@ services:
         dev_path: ./local_dev
         github_token: ${GITHUB_TOKEN}
         service_path: ./chronotrigger
-    command: celery worker --beat --scheduler django --app celery_app -l info
+    command: watchmedo auto-restart --directory . -p '*.py' --recursive -- celery worker --beat --scheduler django --app celery_app -l info
     entrypoint: /usr/src/entry.sh
     depends_on:
       - db
