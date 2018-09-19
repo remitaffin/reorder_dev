@@ -16,4 +16,6 @@ RUN sed -i "s@git+ssh:\/\/git@git+https:\/\/$github_token@" requirements.txt
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN pip install ipython
+
 CMD [ "python", "manage.py", "runserver"]

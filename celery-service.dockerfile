@@ -15,7 +15,7 @@ COPY $service_path/requirements.txt ./
 RUN sed -i "s@git+ssh:\/\/git@git+https:\/\/$github_token@" requirements.txt
 
 # Package to auto reload celery workers
-RUN pip install watchdog
+RUN pip install watchdog ipython
 
 # Libraries will be mounted to this folder
 RUN mkdir $CODE_PATH/libraries

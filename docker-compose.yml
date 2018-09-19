@@ -12,6 +12,8 @@ services:
         service_path: ./chronotrigger
     command: python manage.py runserver 0.0.0.0:8001
     entrypoint: /usr/src/entry.sh
+    environment:
+      - SETTINGS_FILE=app/.env.dk.cfg
     depends_on:
       - db
       - memcached
@@ -36,6 +38,8 @@ services:
         service_path: ./chronotrigger
     command: watchmedo auto-restart --directory . -p '*.py' --recursive -- celery worker --beat --scheduler django --app celery_app -l info
     entrypoint: /usr/src/entry.sh
+    environment:
+      - SETTINGS_FILE=app/.env.dk.cfg
     depends_on:
       - db
       - memcached
@@ -62,6 +66,7 @@ services:
     entrypoint: /usr/src/entry.sh
     environment:
       - PYTHONPATH=/usr/src/app/memento
+      - SETTINGS_FILE=.env.dk.cfg
     depends_on:
       - db
       - memcached
@@ -86,6 +91,8 @@ services:
         service_path: ./moonshine-api
     command: python manage.py runserver 0.0.0.0:8000
     entrypoint: /usr/src/entry.sh
+    environment:
+     - SETTINGS_FILE=app/.env.dk.cfg
     depends_on:
       - db
       - memcached
@@ -97,8 +104,8 @@ services:
     ports: ['8000:8000']
     volumes:
       - ../moonshine-api:/usr/src/app
-      # - ../woodhouse/:/usr/src/libraries/woodhouse
       # - ../moonshine-core/:/usr/src/libraries/moonshine-core
+      # - ../woodhouse/:/usr/src/libraries/woodhouse
 
   moonshine-celery:
     build:
@@ -110,6 +117,8 @@ services:
         service_path: ./moonshine-celery
     command: celery worker --app celery_app --loglevel=info
     entrypoint: /usr/src/entry.sh
+    environment:
+      - SETTINGS_FILE=app/.env.dk.cfg
     depends_on:
       - rabbitmq
     logging:
@@ -119,8 +128,8 @@ services:
         max-file: ${LOG_MAX_FILE}
     volumes:
       - ../moonshine-celery:/usr/src/app
-      # - ../woodhouse/:/usr/src/libraries/woodhouse
       # - ../moonshine-core/:/usr/src/libraries/moonshine-core
+      # - ../woodhouse/:/usr/src/libraries/woodhouse
 
   db:
     image: mysql

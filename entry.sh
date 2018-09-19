@@ -8,10 +8,13 @@ if [ -d "/usr/src/libraries/moonshine-core" ]; then
   pip install -e /usr/src/libraries/moonshine-core
 fi
 
-# create databases chrono, sms
+echo $SETTINGS_FILE
 
-# python manage.py migrate
-# echo "from django.contrib.auth import get_user_model; User = geer_model(); User.objects.create_superuser('admin', 'admin@myproject.com', 'admin')" | python manage.py shell
+# create databases chrono, sms
+# python manage.py migrate chrono, sms
+
+# generate super user for chrono and moonshine-api
+# echo "from django.contrib.auth import get_user_model; User = geer_model(); User.objects.create_superuser('admin', 'admin@ordergroove.com', 'admin')" | python manage.py shell
 
 # generate moonshine-api creds for chrono
 # client_id=
