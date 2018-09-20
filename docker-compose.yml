@@ -13,7 +13,7 @@ services:
     command: python manage.py runserver 0.0.0.0:8001
     entrypoint: /usr/src/entry.sh
     environment:
-      - SETTINGS_FILE=app/.env.dk.cfg
+      - CHRONO_CFG_FILE=app/.env.dk.cfg
     depends_on:
       - db
       - memcached
@@ -39,7 +39,7 @@ services:
     command: watchmedo auto-restart --directory . -p '*.py' --recursive -- celery worker --beat --scheduler django --app celery_app -l info
     entrypoint: /usr/src/entry.sh
     environment:
-      - SETTINGS_FILE=app/.env.dk.cfg
+      - CHRONO_CFG_FILE=app/.env.dk.cfg
     depends_on:
       - db
       - memcached
@@ -93,7 +93,6 @@ services:
     entrypoint: /usr/src/entry.sh
     environment:
      - MOONSHINE_CFG_FILE=app/.env.dk.cfg
-     - MOONSHINE_DN_ACTIVATE=1
     depends_on:
       - db
       - memcached
@@ -120,7 +119,6 @@ services:
     entrypoint: /usr/src/entry.sh
     environment:
       - MOONSHINE_CFG_FILE=app/.env.dk.cfg
-      - MOONSHINE_DN_ACTIVATE=1
     depends_on:
       - rabbitmq
     logging:
