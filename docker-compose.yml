@@ -66,7 +66,7 @@ services:
     entrypoint: /usr/src/entry.sh
     environment:
       - PYTHONPATH=/usr/src/app/memento
-      - SETTINGS_FILE=.env.dk.cfg
+      - MEMENTO_CFG_FILE=.env.dk.cfg
     depends_on:
       - db
       - memcached
@@ -92,7 +92,8 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     entrypoint: /usr/src/entry.sh
     environment:
-     - SETTINGS_FILE=app/.env.dk.cfg
+     - MOONSHINE_CFG_FILE=app/.env.dk.cfg
+     - MOONSHINE_DN_ACTIVATE=1
     depends_on:
       - db
       - memcached
@@ -118,7 +119,8 @@ services:
     command: celery worker --app celery_app --loglevel=info
     entrypoint: /usr/src/entry.sh
     environment:
-      - SETTINGS_FILE=app/.env.dk.cfg
+      - MOONSHINE_CFG_FILE=app/.env.dk.cfg
+      - MOONSHINE_DN_ACTIVATE=1
     depends_on:
       - rabbitmq
     logging:
