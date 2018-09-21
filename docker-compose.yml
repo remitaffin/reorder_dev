@@ -96,6 +96,7 @@ services:
     depends_on:
       - db
       - memcached
+      - rabbitmq
     logging:
       driver: 'json-file'
       options:
