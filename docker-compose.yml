@@ -129,6 +129,7 @@ services:
         max-file: ${LOG_MAX_FILE}
     volumes:
       - ../moonshine-celery:/usr/src/app
+      # - ../moonshine-core/:/usr/src/libraries/abtesting
       # - ../moonshine-core/:/usr/src/libraries/moonshine-core
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
