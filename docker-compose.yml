@@ -2,6 +2,30 @@ version: '3'
 
 services:
 
+  abtesting-service:
+    build:
+      context: ../
+      dockerfile: ./local_dev/django-service.dockerfile
+      args:
+        dev_path: ./local_dev
+        github_token: ${GITHUB_TOKEN}
+        service_path: ./abtesting-service
+    command: python manage.py runserver 0.0.0.0:8002
+    entrypoint: /usr/src/entry.sh
+    environment:
+      - ABTESTING_CFG_FILE=app/${CONFIG_FILE}
+    depends_on:
+      - db
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
+    ports: ['8002:8002']
+    volumes:
+      - ../abtesting-service:/usr/src/app
+      # - ../woodhouse/:/usr/src/libraries/woodhouse
+
   chrono:
     build:
       context: ../
