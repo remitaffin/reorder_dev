@@ -1,5 +1,6 @@
 FROM python:2
 
+ENV PYTHONUNBUFFERED 1
 ENV CODE_PATH=/usr/src
 
 ARG dev_path
