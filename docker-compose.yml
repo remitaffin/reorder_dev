@@ -140,7 +140,7 @@ services:
         dev_path: ./local_dev
         github_token: ${GITHUB_TOKEN}
         service_path: ./moonshine-celery
-    command: celery worker --app celery_app --loglevel=info
+    command: watchmedo auto-restart --directory . -p '*.py' --recursive -- celery worker --app celery_app --loglevel=info
     entrypoint: /usr/src/entry.sh
     environment:
       - MOONSHINE_CFG_FILE=app/${CONFIG_FILE}
