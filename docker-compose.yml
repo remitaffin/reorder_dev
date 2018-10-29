@@ -1,14 +1,24 @@
-version: '3'
+version: '3.4'
+
+x-args:
+  &default-args
+  dev_path: ./local_dev
+  github_token: ${GITHUB_TOKEN}
+
+x-logging:
+  &default-logging
+  driver: json-file
+  options:
+    max-size: ${LOG_MAX_SIZE}
+    max-file: ${LOG_MAX_FILE}
 
 services:
-
   abtesting-service:
     build:
       context: ../
       dockerfile: ./local_dev/django-service.dockerfile
       args:
-        dev_path: ./local_dev
-        github_token: ${GITHUB_TOKEN}
+        << : *default-args
         service_path: ./abtesting-service
     command: python manage.py runserver 0.0.0.0:8002
     entrypoint: /usr/src/entry.sh
@@ -16,11 +26,7 @@ services:
       - ABTESTING_CFG_FILE=app/${CONFIG_FILE}
     depends_on:
       - db
-    logging:
-      driver: 'json-file'
-      options:
-        max-size: ${LOG_MAX_SIZE}
-        max-file: ${LOG_MAX_FILE}
+    logging: *default-logging
     ports: ['8002:8002']
     volumes:
       - ../abtesting-service:/usr/src/app
@@ -31,8 +37,7 @@ services:
       context: ../
       dockerfile: ./local_dev/django-service.dockerfile
       args:
-        dev_path: ./local_dev
-        github_token: ${GITHUB_TOKEN}
+        << : *default-args
         service_path: ./chronotrigger
     command: python manage.py runserver 0.0.0.0:8001
     entrypoint: /usr/src/entry.sh
@@ -42,11 +47,7 @@ services:
       - db
       - memcached
       - mongo
-    logging:
-      driver: 'json-file'
-      options:
-        max-size: ${LOG_MAX_SIZE}
-        max-file: ${LOG_MAX_FILE}
+    logging: *default-logging
     ports: ['8001:8001']
     volumes:
       - ../chronotrigger:/usr/src/app
@@ -57,8 +58,7 @@ services:
       context: ../
       dockerfile: ./local_dev/celery-service.dockerfile
       args:
-        dev_path: ./local_dev
-        github_token: ${GITHUB_TOKEN}
+        << : *default-args
         service_path: ./chronotrigger
     command: watchmedo auto-restart --directory . -p '*.py' --recursive -- celery worker --beat --scheduler django --app celery_app -l info
     entrypoint: /usr/src/entry.sh
@@ -69,11 +69,7 @@ services:
       - memcached
       - mongo
       - rabbitmq
-    logging:
-      driver: 'json-file'
-      options:
-        max-size: ${LOG_MAX_SIZE}
-        max-file: ${LOG_MAX_FILE}
+    logging: *default-logging
     volumes:
       - ../chronotrigger:/usr/src/app
       # - ../woodhouse/:/usr/src/libraries/woodhouse
@@ -83,8 +79,7 @@ services:
       context: ../
       dockerfile: ./local_dev/celery-service.dockerfile
       args:
-        dev_path: ./local_dev
-        github_token: ${GITHUB_TOKEN}
+        << : *default-args
         service_path: ./memento
     command: watchmedo auto-restart --directory ./memento --directory ../libraries/ -p '*.py' --recursive -- celery worker --app memento.celery_app -l info -n og@%h
     entrypoint: /usr/src/entry.sh
@@ -96,11 +91,7 @@ services:
       - memcached
       - mongo
       - rabbitmq
-    logging:
-      driver: 'json-file'
-      options:
-        max-size: ${LOG_MAX_SIZE}
-        max-file: ${LOG_MAX_FILE}
+    logging: *default-logging
     volumes:
       - ../memento:/usr/src/app
       # - ../woodhouse/:/usr/src/libraries/woodhouse
@@ -110,8 +101,7 @@ services:
       context: ../
       dockerfile: ./local_dev/django-service.dockerfile
       args:
-        dev_path: ./local_dev
-        github_token: ${GITHUB_TOKEN}
+        << : *default-args
         service_path: ./moonshine-api
     command: python manage.py runserver 0.0.0.0:8000
     entrypoint: /usr/src/entry.sh
@@ -121,11 +111,7 @@ services:
       - db
       - memcached
       - rabbitmq
-    logging:
-      driver: 'json-file'
-      options:
-        max-size: ${LOG_MAX_SIZE}
-        max-file: ${LOG_MAX_FILE}
+    logging: *default-logging
     ports: ['8000:8000']
     volumes:
       - ../moonshine-api:/usr/src/app
@@ -137,8 +123,7 @@ services:
       context: ../
       dockerfile: ./local_dev/celery-service.dockerfile
       args:
-        dev_path: ./local_dev
-        github_token: ${GITHUB_TOKEN}
+        << : *default-args
         service_path: ./moonshine-celery
     command: watchmedo auto-restart --directory . -p '*.py' --recursive -- celery worker --app celery_app --loglevel=info
     entrypoint: /usr/src/entry.sh
@@ -146,11 +131,7 @@ services:
       - MOONSHINE_CFG_FILE=app/${CONFIG_FILE}
     depends_on:
       - rabbitmq
-    logging:
-      driver: 'json-file'
-      options:
-        max-size: ${LOG_MAX_SIZE}
-        max-file: ${LOG_MAX_FILE}
+    logging: *default-logging
     volumes:
       - ../moonshine-celery:/usr/src/app
       # - ../moonshine-core/:/usr/src/libraries/abtesting
@@ -166,6 +147,7 @@ services:
       # MYSQL_USER:
       # MYSQL_PASSWORD:
       MYSQL_ROOT_PASSWORD: example
+    logging: *default-logging
     volumes:
       - db_data:/data/db
 
@@ -180,6 +162,7 @@ services:
     # environment:
     #   MONGO_INITDB_ROOT_USERNAME: root
     #   MONGO_INITDB_ROOT_PASSWORD: example
+    logging: *default-logging
     volumes:
       - mongo_data:/data/db
 
@@ -190,6 +173,7 @@ services:
       RABBITMQ_DEFAULT_USER: 'rabbitmq'
       RABBITMQ_DEFAULT_PASS: 'rabbitmq'
       RABBITMQ_DEFAULT_VHOST: '/'
+    logging: *default-logging
     ports:
       - '15673:15672'
       - '5673:5672'
@@ -197,6 +181,7 @@ services:
   redis:
     image: redis
     ports: ['6380:6379']
+    logging: *default-logging
 
 volumes:
   db_data:
