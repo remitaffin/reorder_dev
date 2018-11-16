@@ -87,7 +87,6 @@ services:
       - PYTHONPATH=/usr/src/app/memento
       - MEMENTO_CFG_FILE=${CONFIG_FILE}
     depends_on:
-      - db
       - memcached
       - mongo
       - rabbitmq
@@ -130,6 +129,8 @@ services:
     environment:
       - MOONSHINE_CFG_FILE=app/${CONFIG_FILE}
     depends_on:
+      - db
+      - memcached
       - rabbitmq
     logging: *default-logging
     volumes:
