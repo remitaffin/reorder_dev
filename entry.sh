@@ -9,7 +9,7 @@ if [ -d "/usr/src/libraries/moonshine-core" ]; then
 fi
 
 # wait for rabbitmq
-/usr/src/wait-for-it.sh localhost:6379 -- echo 'rabbitmq is up'
+/usr/src/wait-for-it.sh rabbitmq:5672 -- echo 'rabbitmq is up'
 
 # create databases abtesting-service, chrono, sms (moonshine-api)
 # python manage.py migrate abtesting-service, chrono, sms
