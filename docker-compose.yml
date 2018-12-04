@@ -4,6 +4,7 @@ x-args:
   &default-args
   dev_path: ./local_dev
   github_token: ${GITHUB_TOKEN}
+  SSH_PRIV_KEY: ${SSH_PRIV_KEY}
 
 x-logging:
   &default-logging
@@ -73,6 +74,30 @@ services:
     volumes:
       - ../chronotrigger:/usr/src/app
       # - ../woodhouse/:/usr/src/libraries/woodhouse
+
+  lego:
+    build:
+      context: ../
+      dockerfile: ./local_dev/lego.dockerfile
+      args:
+        << : *default-args
+        SERVICE_PATH: ./lego
+    command: python ./lego/manage.py runserver 0.0.0.0:7001 --settings=lego.settings_local
+    # entrypoint: /app/entry.sh
+    environment:
+      - SETTINGS_FILE=./.env.container.cfg
+    depends_on:
+      - mariadb
+      - memcached
+      - rabbitmq
+      - mongo
+    logging: *default-logging
+    ports: ['7001:7001']
+    volumes:
+      - ../lego:/app
+      # - ../woodhouse/:/usr/src/libraries/woodhouse
+      # - ../whiskey/:/usr/src/libraries/whiskey
+      # - ../ordergroove_nucleus/:/usr/src/libraries/ordergroove_nucleus
 
   memento:
     build:
@@ -152,6 +177,16 @@ services:
     volumes:
       - db_data:/data/db
 
+  mariadb:
+    image: mariadb
+    restart: always
+    ports: ['3308:3306']
+    environment:
+      MYSQL_ROOT_PASSWORD: ogpassw
+    logging: *default-logging
+    volumes:
+      - mariadb_data:/data/db
+
   memcached:
     image: memcached
     ports: ['11212:11211']
@@ -186,4 +221,5 @@ services:
 
 volumes:
   db_data:
+  mariadb_data:
   mongo_data:
