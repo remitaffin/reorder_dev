@@ -2,7 +2,7 @@ version: '3.4'
 
 x-args:
   &default-args
-  dev_path: ./local_dev
+  dev_path: ${DEV_PATH}
   github_token: ${GITHUB_TOKEN}
   SSH_PRIV_KEY: ${SSH_PRIV_KEY}
 
@@ -17,7 +17,7 @@ services:
   abtesting-service:
     build:
       context: ../
-      dockerfile: ./local_dev/django-service.dockerfile
+      dockerfile: ${DEV_PATH}/dockerfiles/django-service.dockerfile
       args:
         << : *default-args
         service_path: ./abtesting-service
@@ -36,7 +36,7 @@ services:
   chrono:
     build:
       context: ../
-      dockerfile: ./local_dev/django-service.dockerfile
+      dockerfile: ${DEV_PATH}/dockerfiles/django-service.dockerfile
       args:
         << : *default-args
         service_path: ./chronotrigger
@@ -57,7 +57,7 @@ services:
   chrono-celery:
     build:
       context: ../
-      dockerfile: ./local_dev/celery-service.dockerfile
+      dockerfile: ${DEV_PATH}/dockerfiles/celery-service.dockerfile
       args:
         << : *default-args
         service_path: ./chronotrigger
@@ -78,7 +78,7 @@ services:
   lego:
     build:
       context: ../
-      dockerfile: ./local_dev/lego.dockerfile
+      dockerfile: ${DEV_PATH}/dockerfiles/lego.dockerfile
       args:
         << : *default-args
         SERVICE_PATH: ./lego
@@ -102,7 +102,7 @@ services:
   memento:
     build:
       context: ../
-      dockerfile: ./local_dev/celery-service.dockerfile
+      dockerfile: ${DEV_PATH}/dockerfiles/celery-service.dockerfile
       args:
         << : *default-args
         service_path: ./memento
@@ -123,7 +123,7 @@ services:
   moonshine-api:
     build:
       context: ../
-      dockerfile: ./local_dev/django-service.dockerfile
+      dockerfile: ${DEV_PATH}/dockerfiles/django-service.dockerfile
       args:
         << : *default-args
         service_path: ./moonshine-api
@@ -145,7 +145,7 @@ services:
   moonshine-celery:
     build:
       context: ../
-      dockerfile: ./local_dev/celery-service.dockerfile
+      dockerfile: ${DEV_PATH}/dockerfiles/celery-service.dockerfile
       args:
         << : *default-args
         service_path: ./moonshine-celery
@@ -195,9 +195,6 @@ services:
     image: mongo
     restart: always
     ports: ['27018:27017']
-    # environment:
-    #   MONGO_INITDB_ROOT_USERNAME: root
-    #   MONGO_INITDB_ROOT_PASSWORD: example
     logging: *default-logging
     volumes:
       - mongo_data:/data/db

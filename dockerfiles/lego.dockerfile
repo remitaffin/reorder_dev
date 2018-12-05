@@ -18,6 +18,9 @@ RUN mkdir /root/.ssh/ && \
 RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan -H github.com > /root/.ssh/known_hosts
 
+RUN curl -o $CODE_PATH/wait-for-it.sh https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && \
+    chmod +x $CODE_PATH/wait-for-it.sh
+
 # Install requirements
 COPY $SERVICE_PATH/requirements $CODE_PATH/requirements
 WORKDIR /usr/local/lib/python2.7
