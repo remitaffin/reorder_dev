@@ -27,5 +27,8 @@ chrono_auth_secret=
 ## Platform
 
 Create database ordergroove
-python lego/manage.py migrate --settings=lego.settings_local (Does not work, clone db)
+python lego/manage.py migrate --settings=lego.settings_local (does not work, clone db)
+
+### db_backup
+
 https://ordergroove.atlassian.net/wiki/spaces/DEV/pages/48267266/Backend+environment+set-up
