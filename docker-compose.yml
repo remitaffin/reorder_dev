@@ -164,6 +164,30 @@ services:
       # - ../moonshine-core/:/usr/src/libraries/moonshine-core
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
+  whiskey:
+    build:
+      context: ../
+      dockerfile: ${DEV_PATH}/dockerfiles/whiskey.dockerfile
+      args:
+        << : *default-args
+        service_path: ./whiskey
+    command: python ./api/manage.py runserver 0.0.0.0:7000
+    # entrypoint: /app/entry.sh
+    environment:
+      - DOCKER=true
+      - SETTINGS_FILE=./.env.container.cfg
+    depends_on:
+      - mariadb
+      - redis
+      - rabbitmq
+      - mongo
+    logging: *default-logging
+    ports: ['7000:7000']
+    volumes:
+      - ../whiskey:/app
+      # - ../woodhouse/:/usr/src/libraries/woodhouse
+      # - ../ordergroove_nucleus/:/usr/src/libraries/ordergroove_nucleus
+
   db:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
