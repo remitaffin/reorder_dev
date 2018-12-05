@@ -81,9 +81,9 @@ services:
       dockerfile: ${DEV_PATH}/dockerfiles/lego.dockerfile
       args:
         << : *default-args
-        SERVICE_PATH: ./lego
+        service_path: ./lego
     command: python ./lego/manage.py runserver 0.0.0.0:7001 --settings=lego.settings_local
-    # entrypoint: /app/entry.sh
+    entrypoint: /usr/src/entry.sh
     environment:
       - SETTINGS_FILE=./.env.container.cfg
     depends_on:
