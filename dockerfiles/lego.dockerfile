@@ -19,8 +19,8 @@ RUN mkdir /root/.ssh/ && \
 RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan -H github.com > /root/.ssh/known_hosts
 
-# RUN curl -o $CODE_PATH/wait-for-it.sh https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && \
-#     chmod +x $CODE_PATH/wait-for-it.sh
+# RUN curl -o $MISC_PATH/wait-for-it.sh https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && \
+#     chmod +x $MISC_PATH/wait-for-it.sh
 COPY $dev_path/wait-for-it.sh $MISC_PATH/wait-for-it.sh
 RUN chmod +x $MISC_PATH/wait-for-it.sh
 

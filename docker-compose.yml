@@ -172,7 +172,7 @@ services:
         << : *default-args
         service_path: ./whiskey
     command: python ./api/manage.py runserver 0.0.0.0:7000
-    # entrypoint: /app/entry.sh
+    entrypoint: /usr/src/entry.sh
     environment:
       - DOCKER=true
       - SETTINGS_FILE=./.env.container.cfg
