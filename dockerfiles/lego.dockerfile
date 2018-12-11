@@ -11,11 +11,10 @@ ARG SSH_PRIV_KEY
 COPY $dev_path/entry.sh $MISC_PATH/entry.sh
 RUN chmod +x $MISC_PATH/entry.sh
 
-# For cloning private dependencies
+# Setup ssh key for cloning private repos
 RUN mkdir /root/.ssh/ && \
     echo "${SSH_PRIV_KEY}" | base64 --decode > /root/.ssh/id_rsa && \
     chmod 400 /root/.ssh/id_rsa
-
 RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan -H github.com > /root/.ssh/known_hosts
 
