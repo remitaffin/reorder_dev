@@ -4,22 +4,31 @@ ENV PYTHONUNBUFFERED 1
 ENV CODE_PATH=/usr/src
 
 ARG dev_path
-ARG github_token
 ARG service_path
+ARG SSH_PRIV_KEY
 
 WORKDIR $CODE_PATH/app
 
+# copy entrypoint
 COPY $dev_path/entry.sh $CODE_PATH/entry.sh
 RUN chmod +x $CODE_PATH/entry.sh
 
-RUN curl -o $CODE_PATH/wait-for-it.sh https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && \
-    chmod +x $CODE_PATH/wait-for-it.sh
+# copy wait-for-it script
+# RUN curl -o $CODE_PATH/wait-for-it.sh https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && \
+#     chmod +x $CODE_PATH/wait-for-it.sh
+COPY $dev_path/wait-for-it.sh $CODE_PATH/wait-for-it.sh
+RUN chmod +x $CODE_PATH/wait-for-it.sh
 
+# setup ssh key for cloning private repos
+RUN mkdir /root/.ssh/ && \
+    echo "${SSH_PRIV_KEY}" | base64 --decode > /root/.ssh/id_rsa && \
+    chmod 400 /root/.ssh/id_rsa
+RUN touch /root/.ssh/known_hosts
+RUN ssh-keyscan -H github.com > /root/.ssh/known_hosts
+
+# install requirements
 COPY $service_path/requirements.txt ./
-RUN sed -i "s@git+ssh:\/\/git@git+https:\/\/$github_token@" requirements.txt
-
 RUN pip install --no-cache-dir -r requirements.txt
-
 RUN pip install ipython
 
-CMD [ "python", "manage.py", "runserver"]
+CMD ["python", "manage.py", "runserver"]

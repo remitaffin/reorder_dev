@@ -3,7 +3,6 @@ version: '3.4'
 x-args:
   &default-args
   dev_path: ${DEV_PATH}
-  github_token: ${GITHUB_TOKEN}
   SSH_PRIV_KEY: ${SSH_PRIV_KEY}
 
 x-logging:
