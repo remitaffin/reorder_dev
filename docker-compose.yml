@@ -25,7 +25,7 @@ services:
     environment:
       - ABTESTING_CFG_FILE=app/${CONFIG_FILE}
     depends_on:
-      - db
+      - mariadb
     logging: *default-logging
     ports: ['8002:8002']
     volumes:
@@ -44,7 +44,7 @@ services:
     environment:
       - CHRONO_CFG_FILE=app/${CONFIG_FILE}
     depends_on:
-      - db
+      - mariadb
       - memcached
       - mongo
     logging: *default-logging
@@ -65,7 +65,7 @@ services:
     environment:
       - CHRONO_CFG_FILE=app/${CONFIG_FILE}
     depends_on:
-      - db
+      - mariadb
       - memcached
       - mongo
       - rabbitmq
@@ -131,7 +131,7 @@ services:
     environment:
      - MOONSHINE_CFG_FILE=app/${CONFIG_FILE}
     depends_on:
-      - db
+      - mariadb
       - memcached
       - rabbitmq
     logging: *default-logging
@@ -153,7 +153,7 @@ services:
     environment:
       - MOONSHINE_CFG_FILE=app/${CONFIG_FILE}
     depends_on:
-      - db
+      - mariadb
       - memcached
       - rabbitmq
     logging: *default-logging
@@ -187,23 +187,10 @@ services:
       # - ../woodhouse/:/usr/src/libraries/woodhouse
       # - ../ordergroove_nucleus/:/usr/src/libraries/ordergroove_nucleus
 
-  db:
-    image: mysql
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    ports: ['3307:3306']
-    environment:
-      # MYSQL_USER:
-      # MYSQL_PASSWORD:
-      MYSQL_ROOT_PASSWORD: example
-    logging: *default-logging
-    volumes:
-      - db_data:/data/db
-
   mariadb:
     image: mariadb
     restart: always
-    ports: ['3308:3306']
+    ports: ['3306:3306']
     environment:
       MYSQL_ROOT_PASSWORD: ogpassw
     logging: *default-logging
@@ -217,7 +204,7 @@ services:
   mongo:
     image: mongo
     restart: always
-    ports: ['27018:27017']
+    ports: ['27017:27017']
     logging: *default-logging
     volumes:
       - mongo_data:/data/db
@@ -240,6 +227,5 @@ services:
     logging: *default-logging
 
 volumes:
-  db_data:
   mariadb_data:
   mongo_data:
