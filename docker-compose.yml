@@ -204,7 +204,7 @@ services:
   mongo:
     image: mongo
     restart: always
-    ports: ['27017:27017']
+    ports: ['27018:27017']
     logging: *default-logging
     volumes:
       - mongo_data:/data/db
