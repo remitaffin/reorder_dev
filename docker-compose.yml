@@ -199,12 +199,12 @@ services:
 
   memcached:
     image: memcached
-    ports: ['11212:11211']
+    ports: ['11211:11211']
 
   mongo:
     image: mongo
     restart: always
-    ports: ['27018:27017']
+    ports: ['27017:27017']
     logging: *default-logging
     volumes:
       - mongo_data:/data/db
@@ -218,12 +218,12 @@ services:
       RABBITMQ_DEFAULT_VHOST: '/'
     logging: *default-logging
     ports:
-      - '15673:15672'
-      - '5673:5672'
+      - '15672:15672'
+      - '5672:5672'
 
   redis:
     image: redis
-    ports: ['6380:6379']
+    ports: ['6379:6379']
     logging: *default-logging
 
 volumes:

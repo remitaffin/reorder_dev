@@ -21,11 +21,10 @@ moonshine-api: 8000
 chrono: 8001
 abtesting-service: 8002
 
+## Config files
 
-## Port mapping for other services
+For config files to work both in the container and on your machine add the line below to your `/etc/hosts` file.
 
-Memcached, Mongo, RabbitMQ and Redis are mapped to different ports on your
-machine vs inside the containers. Inside the containers they use the
-default ports but on your machine they use the default port plus 1
-i.e. mongo defaults to port `27017`, add 1 and it is `27018`, the full url
-is `127.0.0.1:27018`.
+```bash
+127.0.0.1 localhost abtesting-service chrono moonshine-api lego whiskey mariadb memcached mongo rabbitmq redis
+```
