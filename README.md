@@ -21,6 +21,13 @@ moonshine-api: 8000
 chrono: 8001
 abtesting-service: 8002
 
+## Add indexes to mongoDB
+
+`db.getCollection('one-time-tasks').createIndex({"created": 1})`
+`db.getCollection('one-time-tasks').createIndex({"name": 1}, { unique: true })`
+`db.getCollection('one-time-tasks').createIndex({"run_at": 1}, { expireAfterSeconds: 7776000 })`
+`db.getCollection('one-time-tasks').createIndex({"status": 1, "run_at": 1})`
+
 ## Config files
 
 For config files to work both in the container and on your machine add the line below to your `/etc/hosts` file.
