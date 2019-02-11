@@ -109,7 +109,7 @@ services:
     entrypoint: /usr/src/entry.sh
     environment:
       - PYTHONPATH=/usr/src/app/memento
-      - MEMENTO_CFG_FILE=${CONFIG_FILE}
+      - SETTINGS_FILE=${CONFIG_FILE}
     depends_on:
       - memcached
       - mongo
