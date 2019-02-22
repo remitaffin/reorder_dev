@@ -9,9 +9,9 @@ LOG_MAX_SIZE=50k
 LOG_MAX_FILE=2
 ```
 
-## For lego make sure export environment variable
+## Export ssh key for pull private python repos
 
-`set -x SSH_PRIV_KEY (cat ~/.ssh/id_rsa | base64)`
+`export SSH_PRIV_KEY=$(cat ~/.ssh/id_rsa | base64)`
 
 ## Port mapping for apps
 
@@ -23,10 +23,12 @@ abtesting-service: 8002
 
 ## Add indexes to mongoDB
 
-`db.getCollection('one-time-tasks').createIndex({"created": 1})`
-`db.getCollection('one-time-tasks').createIndex({"name": 1}, { unique: true })`
-`db.getCollection('one-time-tasks').createIndex({"run_at": 1}, { expireAfterSeconds: 7776000 })`
-`db.getCollection('one-time-tasks').createIndex({"status": 1, "run_at": 1})`
+```
+db.getCollection('one-time-tasks').createIndex({"created": 1})
+db.getCollection('one-time-tasks').createIndex({"name": 1}, { unique: true })
+db.getCollection('one-time-tasks').createIndex({"run_at": 1}, { expireAfterSeconds: 7776000 })
+db.getCollection('one-time-tasks').createIndex({"status": 1, "run_at": 1})
+```
 
 ## Config files
 
