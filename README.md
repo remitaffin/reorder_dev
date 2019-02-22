@@ -37,3 +37,16 @@ For config files to work both in the container and on your machine add the line 
 ```bash
 127.0.0.1 localhost abtesting-service chrono moonshine-api lego whiskey mariadb memcached mongo rabbitmq redis
 ```
+
+## For remote debugging
+
+1. Change command to: `python manage.py runserver --noreload --nothreading 0.0.0.0:8000`
+
+2. Export port `'3000:3000'`
+
+3. Update `manage.py`
+
+```
+import ptvsd
+ptvsd.enable_attach(address=('0.0.0.0', 3000))
+```
