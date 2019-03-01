@@ -175,7 +175,7 @@ services:
       args:
         << : *default-args
         service_path: ./relay
-    command: watchmedo auto-restart --directory . -p '*.py' --recursive -- celery worker --app relay.celery_app --loglevel=info
+    command: watchmedo auto-restart --directory relay -p '*.py' --recursive -- celery worker --app relay.celery_app --loglevel=info
     entrypoint: /usr/src/entry.sh
     environment:
       - SETTINGS_FILE=${CONFIG_FILE}
