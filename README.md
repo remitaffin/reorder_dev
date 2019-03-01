@@ -24,6 +24,8 @@
 
 2. Create config file `.env.container.cfg` inside each project
 
+    For each app and service use the following [urls](#apps-and-services-urls).
+
 3. Create .env file inside this repo
 
     ```bash
@@ -43,23 +45,21 @@
 
     Note: On the first run, docker will have to build each image for the first time. This may take some time.
 
-## Port mapping for apps
+## Apps and services URLs
 
 ```bash
-whiskey: 7000
-lego: 7001
-moonshine-api: 8000
-chrono: 8001
-abtesting-service: 8002
-```
+# Apps
+http://whiskey:7000
+http://lego:7001
+http://moonshine-api:8000
+http://chrono:8001
+http://abtesting-service:8002
 
-## Add indexes to mongoDB
-
-```javascript
-db.getCollection('one-time-tasks').createIndex({"created": 1})
-db.getCollection('one-time-tasks').createIndex({"name": 1}, { unique: true })
-db.getCollection('one-time-tasks').createIndex({"run_at": 1}, { expireAfterSeconds: 7776000 })
-db.getCollection('one-time-tasks').createIndex({"status": 1, "run_at": 1})
+# Services
+amqp://rabbitmq:rabbitmq@rabbitmq:5672
+memcached:11211
+mongodb://mongo:27017
+mysql://root:ogpassw@mariadb:3306
 ```
 
 ## Config files
