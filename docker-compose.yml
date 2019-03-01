@@ -13,6 +13,11 @@ x-logging:
     max-file: ${LOG_MAX_FILE}
 
 services:
+
+  #
+  # OG Apps
+  #
+
   abtesting-service:
     build:
       context: ../
@@ -205,6 +210,10 @@ services:
       - ../whiskey:/app
       # - ../woodhouse/:/usr/src/libraries/woodhouse
       # - ../ordergroove_nucleus/:/usr/src/libraries/ordergroove_nucleus
+
+  #
+  # Third party services
+  #
 
   mariadb:
     image: mariadb
