@@ -22,11 +22,11 @@
     │   └── woodhouse
     ```
 
-2. Create config file `.env.container.cfg` inside each project
+2. Create file `.env.container.cfg` inside each project for their configuration
 
     For each app and service use the following [urls](#apps-and-services-urls).
 
-3. Create .env file inside this repo
+3. Create `.env` file inside this repo
 
     ```bash
     DEV_PATH=./og_dev
