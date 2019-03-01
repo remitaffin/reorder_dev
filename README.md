@@ -55,11 +55,14 @@ http://moonshine-api:8000
 http://chrono:8001
 http://abtesting-service:8002
 
+http://rabbitmq:15672  # rabbitmq management UI
+
 # Services
 amqp://rabbitmq:rabbitmq@rabbitmq:5672
 memcached:11211
 mongodb://mongo:27017
 mysql://root:ogpassw@mariadb:3306
+redis://redis:6379
 ```
 
 ## Config files
