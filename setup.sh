@@ -4,9 +4,9 @@
 # Setup Django apps
 #
 
-mysql -u root -pogpassw -e "create database abtesting-service";
-mysql -u root -pogpassw -e "create database chrono";
-mysql -u root -pogpassw -e "create database moonshine";
+mysql -h 127.0.0.1 -u root -pogpassw -e "create database abtesting-service";
+mysql -h 127.0.0.1 -u root -pogpassw -e "create database chrono";
+mysql -h 127.0.0.1 -u root -pogpassw -e "create database moonshine";
 
 docker-compose exec abtesting-service ./manage.py migrate
 docker-compose exec chrono ./manage.py migrate
