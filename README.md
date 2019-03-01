@@ -15,9 +15,9 @@ Clone repo to the same level as your projects `git clone git@github.com:alessod/
 │   ├── moonshine-api-lite
 │   ├── moonshine-celery
 │   ├── moonshine-core
-│   ├── moonshine-relay
 │   ├── og_dev  <------------------- HERE
 │   ├── ordergroove_nucleus
+│   ├── relay
 │   ├── whiskey
 │   └── woodhouse
 ```
