@@ -1,2 +1,3 @@
 **/.tox*
 **/db_dump*
+.venv
