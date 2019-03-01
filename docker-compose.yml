@@ -163,6 +163,25 @@ services:
       # - ../moonshine-core/:/usr/src/libraries/moonshine-core
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
+  relay:
+    build:
+      context: ../
+      dockerfile: ${DEV_PATH}/dockerfiles/celery-service.dockerfile
+      args:
+        << : *default-args
+        service_path: ./relay
+    command: watchmedo auto-restart --directory . -p '*.py' --recursive -- celery worker --app relay.celery_app --loglevel=info
+    entrypoint: /usr/src/entry.sh
+    environment:
+      - SETTINGS_FILE=${CONFIG_FILE}
+    depends_on:
+      - mariadb
+      - rabbitmq
+    logging: *default-logging
+    volumes:
+      - ../relay:/usr/src/app
+      # - ../woodhouse/:/usr/src/libraries/woodhouse
+
   whiskey:
     build:
       context: ../
