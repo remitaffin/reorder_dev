@@ -72,7 +72,7 @@ In local environment install ptvsd `pip install ptvsd`
 
 3. Update `manage.py`
 
-```python
-import ptvsd
-ptvsd.enable_attach(address=('0.0.0.0', 3000))
-```
+    ```python
+    import ptvsd
+    ptvsd.enable_attach(address=('0.0.0.0', 3000))
+    ```
