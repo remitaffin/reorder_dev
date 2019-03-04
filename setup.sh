@@ -4,7 +4,7 @@
 # Setup Django apps
 #
 
-mysql -h 127.0.0.1 -u root -pogpassw -e "create database abtesting-service";
+mysql -h 127.0.0.1 -u root -pogpassw -e "create database abtesting";
 mysql -h 127.0.0.1 -u root -pogpassw -e "create database chrono";
 mysql -h 127.0.0.1 -u root -pogpassw -e "create database moonshine";
 # mysql -h 127.0.0.1 -u root -pogpassw -e "create database callmemaybe"; NOT SETUP YET
