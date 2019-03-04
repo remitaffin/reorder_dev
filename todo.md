@@ -14,7 +14,6 @@ generate chrono creds
 CHRONO_AUTH_ID=
 CHRONO_AUTH_SECRET=
 
-
 ## Platform
 
 Create database ordergroove
