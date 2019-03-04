@@ -26,14 +26,9 @@
 
     For each app and service use the following [urls](#apps-and-services-urls).
 
-3. Create `.env` file inside this repo
+3. Copy .env.default file inside this repo
 
-    ```bash
-    DEV_PATH=./og_dev
-    CONFIG_FILE=.env.container.cfg
-    LOG_MAX_SIZE=50k
-    LOG_MAX_FILE=2
-    ```
+    `cp .env.default .env`
 
 4. Export ssh key for pulling private python repos
 
