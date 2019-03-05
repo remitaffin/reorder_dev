@@ -166,6 +166,7 @@ services:
       - ../moonshine-celery:/usr/src/app
       # - ../moonshine-core/:/usr/src/libraries/abtesting
       # - ../moonshine-core/:/usr/src/libraries/moonshine-core
+      # - ../relay-models/:/usr/src/libraries/relay-models
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
   relay:
@@ -185,6 +186,7 @@ services:
     logging: *default-logging
     volumes:
       - ../relay:/usr/src/app
+      # - ../relay-models/:/usr/src/libraries/relay-models
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
   whiskey:

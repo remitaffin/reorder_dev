@@ -4,6 +4,10 @@ if [ -d "/usr/src/libraries/moonshine-core" ]; then
   pip install -e /usr/src/libraries/moonshine-core
 fi
 
+if [ -d "/usr/src/libraries/relay-models" ]; then
+  pip install -e /usr/src/libraries/relay-models
+fi
+
 if [ -d "/usr/src/libraries/ordergroove_nucleus" ]; then
   pip install -e /usr/src/libraries/ordergroove_nucleus
 fi
