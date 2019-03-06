@@ -152,6 +152,7 @@ services:
       - ../moonshine-api:/usr/src/app
       - *ignore-venv
       # - ../moonshine-core/:/usr/src/libraries/moonshine-core
+      # - ../relay-models/:/usr/src/libraries/relay-models
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
   moonshine-celery:
