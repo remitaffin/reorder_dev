@@ -1,16 +1,19 @@
 version: '3.4'
 
-x-args:
-  &default-args
+# Extension fields for reusing configuration fragments
+x-args: &default-args
   dev_path: ${DEV_PATH}
   SSH_PRIV_KEY: ${SSH_PRIV_KEY}
 
-x-logging:
-  &default-logging
+x-logging: &default-logging
   driver: json-file
   options:
     max-size: ${LOG_MAX_SIZE}
     max-file: ${LOG_MAX_FILE}
+
+x-services-volume:
+  - &ignore-venv
+    /usr/src/app/.venv
 
 services:
 
@@ -35,6 +38,7 @@ services:
     ports: ['8002:8002']
     volumes:
       - ../abtesting-service:/usr/src/app
+      - *ignore-venv
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
   chrono:
@@ -56,6 +60,7 @@ services:
     ports: ['8001:8001']
     volumes:
       - ../chronotrigger:/usr/src/app
+      - *ignore-venv
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
   chrono-celery:
@@ -77,6 +82,7 @@ services:
     logging: *default-logging
     volumes:
       - ../chronotrigger:/usr/src/app
+      - *ignore-venv
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
   lego:
@@ -122,6 +128,7 @@ services:
     logging: *default-logging
     volumes:
       - ../memento:/usr/src/app
+      - *ignore-venv
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
   moonshine-api:
@@ -143,6 +150,7 @@ services:
     ports: ['8000:8000']
     volumes:
       - ../moonshine-api:/usr/src/app
+      - *ignore-venv
       # - ../moonshine-core/:/usr/src/libraries/moonshine-core
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
@@ -164,6 +172,7 @@ services:
     logging: *default-logging
     volumes:
       - ../moonshine-celery:/usr/src/app
+      - *ignore-venv
       # - ../moonshine-core/:/usr/src/libraries/abtesting
       # - ../moonshine-core/:/usr/src/libraries/moonshine-core
       # - ../relay-models/:/usr/src/libraries/relay-models
@@ -186,6 +195,7 @@ services:
     logging: *default-logging
     volumes:
       - ../relay:/usr/src/app
+      - *ignore-venv
       # - ../relay-models/:/usr/src/libraries/relay-models
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
