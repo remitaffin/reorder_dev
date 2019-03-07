@@ -34,7 +34,7 @@ docker-compose exec moonshine-api bash -c 'export PYTHONPATH=/usr/src/app && pyt
 # Whiskey/Lego
 #
 
-mysql -h 127.0.0.1 -u root -pogpassw -e "create database ordergroove";
+# mysql -h 127.0.0.1 -u root -pogpassw -e "create database ordergroove";
 # Use stg DB
 # https://ordergroove.atlassian.net/wiki/spaces/DEV/pages/48267266/Backend+environment+set-up
 
