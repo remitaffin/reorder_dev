@@ -6,6 +6,8 @@
 
 # Create db
 docker-compose up -d mariadb
+sleep 10
+
 docker-compose exec mariadb mysql -u root -pogpassw -e "create database abtesting";
 docker-compose exec mariadb mysql -u root -pogpassw -e "create database chrono";
 docker-compose exec mariadb mysql -u root -pogpassw -e "create database moonshine";
