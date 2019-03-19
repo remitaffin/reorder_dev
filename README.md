@@ -34,7 +34,9 @@
 
     `export SSH_PRIV_KEY=$(cat ~/.ssh/id_rsa | base64)`
 
-5. Launch apps
+5. Run `setup.sh`
+
+6. Launch apps
 
     `docker-compose up -d`
 
