@@ -146,6 +146,7 @@ services:
       - mariadb
       - memcached
       - rabbitmq
+      - abtesting-service
     logging: *default-logging
     ports: ['8000:8000']
     volumes:
@@ -170,6 +171,7 @@ services:
       - mariadb
       - memcached
       - rabbitmq
+      - abtesting-service
     logging: *default-logging
     volumes:
       - ../moonshine-celery:/usr/src/app
