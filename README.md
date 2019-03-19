@@ -48,9 +48,18 @@
 # Apps
 http://whiskey:7000
 http://lego:7001
+
 http://moonshine-api:8000
+# moonshine-api-client-id
+# moonshine-api-secret
+
 http://chrono:8001
+# chrono-client-id
+# chrono-secret
+
 http://abtesting-service:8002
+# abtesting-service-client-id
+# abtesting-service-secret
 
 http://rabbitmq:15672  # rabbitmq management UI
 
