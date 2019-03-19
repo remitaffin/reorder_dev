@@ -123,7 +123,6 @@ services:
       - SETTINGS_FILE=${CONFIG_FILE}
     depends_on:
       - memcached
-      - mongo
       - rabbitmq
     logging: *default-logging
     volumes:
