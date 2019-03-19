@@ -47,8 +47,8 @@ docker-compose run --rm moonshine-api bash -c 'export PYTHONPATH=/usr/src/app &&
 # mysql -h 127.0.0.1 -u root -pogpassw -e "create database callmemaybe"; NOT SETUP YET
 
 #
-# done
+# Stop services
 #
 
-echo 'done!'
 docker-compose stop
+echo 'done!'
