@@ -34,13 +34,13 @@
 
     `export SSH_PRIV_KEY=$(cat ~/.ssh/id_rsa | base64)`
 
-5. Run `setup.sh`
+5. `docker-compose build --parallel`
 
-6. Launch apps
+6. Run `setup.sh`
+
+7. Launch apps
 
     `docker-compose up -d`
-
-    Note: On the first run, docker will have to build each image for the first time. This may take some time.
 
 ## Apps and services URLs
 
