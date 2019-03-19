@@ -1,7 +1,7 @@
 #! /bin/bash
 
 #
-# Setup Django apps
+# Setup docker-compose services
 #
 
 # Create db
