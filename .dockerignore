@@ -1,6 +1,5 @@
 **/node_modules
 **/.venv*
-**/.tox*
-**/db_dump*
+**/.tox
 **/.git
 **/.vscode
