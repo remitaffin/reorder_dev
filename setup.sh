@@ -11,7 +11,6 @@ sleep 10
 docker-compose exec mariadb mysql -u root -pogpassw -e "create database abtesting";
 docker-compose exec mariadb mysql -u root -pogpassw -e "create database chrono";
 docker-compose exec mariadb mysql -u root -pogpassw -e "create database moonshine";
-docker-compose stop mariadb
 
 # Migrate db
 docker-compose run --rm abtesting-service ./manage.py migrate
@@ -46,3 +45,10 @@ docker-compose run --rm moonshine-api bash -c 'export PYTHONPATH=/usr/src/app &&
 # Call-me-maybe
 #
 # mysql -h 127.0.0.1 -u root -pogpassw -e "create database callmemaybe"; NOT SETUP YET
+
+#
+# done
+#
+
+echo 'done!'
+docker-compose stop
