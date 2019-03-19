@@ -5,9 +5,11 @@
 #
 
 # Create db
-mysql -h 127.0.0.1 -u root -pogpassw -e "create database abtesting";
-mysql -h 127.0.0.1 -u root -pogpassw -e "create database chrono";
-mysql -h 127.0.0.1 -u root -pogpassw -e "create database moonshine";
+docker-compose up -d mariadb
+docker-compose exec mariadb mysql -u root -pogpassw -e "create database abtesting";
+docker-compose exec mariadb mysql -u root -pogpassw -e "create database chrono";
+docker-compose exec mariadb mysql -u root -pogpassw -e "create database moonshine";
+docker-compose stop mariadb
 
 # Migrate db
 docker-compose run --rm abtesting-service ./manage.py migrate
