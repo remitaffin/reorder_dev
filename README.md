@@ -34,11 +34,13 @@
 
     `export SSH_PRIV_KEY=$(cat ~/.ssh/id_rsa | base64)`
 
-5. `docker-compose build --parallel`
+5. `ln -s $PWD/.dockerignore $(dirname $PWD)/.dockerignore`
 
-6. Run `setup.sh`
+6. `docker-compose build --parallel`
 
-7. Launch apps
+7. Run `setup.sh`
+
+8. Launch apps
 
     `docker-compose up -d`
 
