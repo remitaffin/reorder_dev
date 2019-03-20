@@ -16,6 +16,7 @@
     │   ├── moonshine-core
     │   ├── reorder_dev  <------------------- HERE
     │   ├── relay
+    │   ├── relay-models
     │   └── woodhouse
     ```
 
