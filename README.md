@@ -8,7 +8,6 @@
     ├── Develop
     │   ├── abtesting
     │   ├── abtesting-service
-    │   ├── call-me-maybe
     │   ├── chronotrigger
     │   ├── memento
     │   ├── moonshine-api
@@ -16,9 +15,7 @@
     │   ├── moonshine-celery
     │   ├── moonshine-core
     │   ├── reorder_dev  <------------------- HERE
-    │   ├── ordergroove_nucleus
     │   ├── relay
-    │   ├── whiskey
     │   └── woodhouse
     ```
 
