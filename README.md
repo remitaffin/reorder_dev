@@ -2,7 +2,7 @@
 
 ## Setup
 
-1. Clone repo to the same level as your projects `git clone git@github.com:alessod/og-setup.git og_dev`
+1. Clone repo to the same level as your projects `git clone git@github.com:alessod/og-setup.git reorder_dev`
 
     ```bash
     ├── Develop
@@ -15,7 +15,7 @@
     │   ├── moonshine-api-lite
     │   ├── moonshine-celery
     │   ├── moonshine-core
-    │   ├── og_dev  <------------------- HERE
+    │   ├── reorder_dev  <------------------- HERE
     │   ├── ordergroove_nucleus
     │   ├── relay
     │   ├── whiskey

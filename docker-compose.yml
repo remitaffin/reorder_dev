@@ -85,30 +85,6 @@ services:
       - *ignore-venv
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
-  lego:
-    build:
-      context: ../
-      dockerfile: ${DEV_PATH}/dockerfiles/lego.dockerfile
-      args:
-        << : *default-args
-        service_path: ./lego
-    command: python ./lego/manage.py runserver 0.0.0.0:7001 --settings=lego.settings_local
-    entrypoint: /usr/src/entry.sh
-    environment:
-      - SETTINGS_FILE=./.env.container.cfg
-    depends_on:
-      - mariadb
-      - memcached
-      - rabbitmq
-      - mongo
-    logging: *default-logging
-    ports: ['7001:7001']
-    volumes:
-      - ../lego:/app
-      # - ../woodhouse/:/usr/src/libraries/woodhouse
-      # - ../whiskey/:/usr/src/libraries/whiskey
-      # - ../ordergroove_nucleus/:/usr/src/libraries/ordergroove_nucleus
-
   memento:
     build:
       context: ../
@@ -200,30 +176,6 @@ services:
       - *ignore-venv
       # - ../relay-models/:/usr/src/libraries/relay-models
       # - ../woodhouse/:/usr/src/libraries/woodhouse
-
-  whiskey:
-    build:
-      context: ../
-      dockerfile: ${DEV_PATH}/dockerfiles/whiskey.dockerfile
-      args:
-        << : *default-args
-        service_path: ./whiskey
-    command: python ./api/manage.py runserver 0.0.0.0:7000
-    entrypoint: /usr/src/entry.sh
-    environment:
-      - DOCKER=true
-      - SETTINGS_FILE=./.env.container.cfg
-    depends_on:
-      - mariadb
-      - redis
-      - rabbitmq
-      - mongo
-    logging: *default-logging
-    ports: ['7000:7000']
-    volumes:
-      - ../whiskey:/app
-      # - ../woodhouse/:/usr/src/libraries/woodhouse
-      # - ../ordergroove_nucleus/:/usr/src/libraries/ordergroove_nucleus
 
   #
   # Third party services
