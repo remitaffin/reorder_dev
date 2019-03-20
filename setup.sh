@@ -10,7 +10,6 @@ function heading() {
 
 heading 'Starting...'
 
-# Create db
 docker-compose up -d mariadb
 sleep 10
 
