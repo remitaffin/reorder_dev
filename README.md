@@ -2,7 +2,7 @@
 
 ## Setup
 
-1. Clone repo to the same level as your projects `git clone git@github.com:alessod/og-setup.git reorder_dev`
+1. Clone repo to the same level as your projects `git clone git@github.com:alessod/reorder_dev.git reorder_dev`
 
     ```bash
     ├── Develop
@@ -47,10 +47,6 @@
 ## Apps and services URLs
 
 ```bash
-# Apps
-http://whiskey:7000
-http://lego:7001
-
 http://moonshine-api:8000
 # moonshine-api-client-id
 # moonshine-api-secret
@@ -64,9 +60,8 @@ http://abtesting-service:8002
 # abtesting-service-secret
 
 http://rabbitmq:15672  # rabbitmq management UI
-
-# Services
 amqp://rabbitmq:rabbitmq@rabbitmq:5672
+
 memcached:11211
 mongodb://mongo:27017
 mysql://root:ogpassw@mariadb:3306
@@ -78,7 +73,7 @@ redis://redis:6379
 For config files to work both in the container and on your machine add the line below to your `/etc/hosts` file.
 
 ```bash
-127.0.0.1 localhost abtesting-service chrono moonshine-api lego whiskey mariadb memcached mongo rabbitmq redis
+127.0.0.1 localhost abtesting-service chrono moonshine-api mariadb memcached mongo rabbitmq redis
 ```
 
 ## For debugging container
