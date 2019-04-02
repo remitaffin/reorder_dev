@@ -10,8 +10,9 @@ function heading() {
 
 heading 'Starting...'
 
-docker-compose up -d mariadb
-sleep 10
+docker-compose up -d mariadb rabbitmq
+./wait-for-it.sh --strict rabbitmq:5672 -t 60 -- echo 'rabbitmq is up'
+./wait-for-it.sh --strict mariadb:3306 -t 60 -- echo 'mariadb is up'
 
 heading 'Create DBs'
 docker-compose exec mariadb mysql -u root -pogpassw -e "create database abtesting";

@@ -13,6 +13,6 @@ if [ -d "/usr/src/libraries/woodhouse" ]; then
 fi
 
 # wait for rabbitmq
-/usr/src/wait-for-it.sh --strict -t 0 rabbitmq:5672 -- echo 'rabbitmq is up'
+/usr/src/wait-for-it.sh --strict -t 60 rabbitmq:5672 -- echo 'rabbitmq is up'
 
 exec "$@"
