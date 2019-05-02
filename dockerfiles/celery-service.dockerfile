@@ -32,6 +32,6 @@ RUN mkdir $CODE_PATH/libraries
 # install requirements
 COPY $service_path/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install watchdog ipython
+RUN pip install watchdog ipython ptvsd prospector autopep8 rope
 
 CMD ["celery", "worker", "--app", "celery_app", "-l" "info"]

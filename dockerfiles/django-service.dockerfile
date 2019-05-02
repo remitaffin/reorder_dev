@@ -29,7 +29,6 @@ RUN ssh-keyscan -H github.com > /root/.ssh/known_hosts
 # install requirements
 COPY $service_path/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install --no-cache-dir ipython
-RUN pip install --no-cache-dir ptvsd
+RUN pip install --no-cache-dir ipython ptvsd prospector pylint-django autopep8 rope
 
 CMD ["python", "manage.py", "runserver"]
