@@ -19,10 +19,12 @@ RUN chmod +x $CODE_PATH/entry.sh
 COPY $dev_path/wait-for-it.sh $CODE_PATH/wait-for-it.sh
 RUN chmod +x $CODE_PATH/wait-for-it.sh
 
-# setup ssh key for cloning private repos
+# setup ssh key for installing private repos on github
 RUN mkdir /root/.ssh/ && \
     echo "${SSH_PRIV_KEY}" | base64 --decode > /root/.ssh/id_rsa && \
     chmod 400 /root/.ssh/id_rsa
+
+# add github to known_hosts
 RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan -H github.com > /root/.ssh/known_hosts
 

@@ -1,4 +1,4 @@
-FROM python:2
+FROM python:3.6.8
 
 ENV PYTHONUNBUFFERED 1
 ENV CODE_PATH=/usr/src
@@ -28,7 +28,7 @@ RUN mkdir /root/.ssh/ && \
 RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan -H github.com > /root/.ssh/known_hosts
 
-# Libraries will be mounted to this folder (watchdog will throw error if directory is not found)
+# libraries will be mounted to this folder (watchdog will throw error if directory is not found)
 RUN mkdir $CODE_PATH/libraries
 
 # install requirements
