@@ -36,5 +36,11 @@ COPY $service_path/requirements.txt ./
 RUN pip install -r requirements.txt
 RUN pip install watchdog ipython ptvsd prospector autopep8 rope pytest
 
+# copy default endpoint specific user settings overrides into container to specify Python path/
+COPY $dev_path/config/settings.vscode.json /root/.vscode-remote/data/Machine/settings.json
+
+# git
+COPY $dev_path/config/gitignore /root/.config/git/ignore
+
 # CMD ["python", "manage.py", "runserver"]
 # CMD ["celery", "worker", "--app", "celery_app", "-l" "info"]

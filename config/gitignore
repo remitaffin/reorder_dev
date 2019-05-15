@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# VScode
+.vscode
+.devcontainer
+
+# python
+.venv*
+.pytest_cache
+__pycache__
+*.pyc
+django.db
+setup.cfg
+
+# misc
+*.log
+
+# dotenv
+.env*
