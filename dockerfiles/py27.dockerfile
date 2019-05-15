@@ -28,9 +28,13 @@ RUN mkdir /root/.ssh/ && \
 RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan -H github.com > /root/.ssh/known_hosts
 
+# libraries will be mounted to this folder (watchdog will throw error if directory is not found)
+RUN mkdir $CODE_PATH/libraries
+
 # install requirements
 COPY $service_path/requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install --no-cache-dir ipython ptvsd prospector autopep8 rope
+RUN pip install -r requirements.txt
+RUN pip install watchdog ipython ptvsd prospector autopep8 rope pytest
 
-CMD ["python", "manage.py", "runserver"]
+# CMD ["python", "manage.py", "runserver"]
+# CMD ["celery", "worker", "--app", "celery_app", "-l" "info"]

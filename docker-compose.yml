@@ -24,7 +24,7 @@ services:
   abtesting-service:
     build:
       context: ../
-      dockerfile: ${DEV_PATH}/dockerfiles/django-service.dockerfile
+      dockerfile: ${DEV_PATH}/dockerfiles/py27.dockerfile
       args:
         << : *default-args
         service_path: ./abtesting-service
@@ -44,7 +44,7 @@ services:
   chrono:
     build:
       context: ../
-      dockerfile: ${DEV_PATH}/dockerfiles/django-service.dockerfile
+      dockerfile: ${DEV_PATH}/dockerfiles/py27.dockerfile
       args:
         << : *default-args
         service_path: ./chronotrigger
@@ -66,7 +66,7 @@ services:
   chrono-celery:
     build:
       context: ../
-      dockerfile: ${DEV_PATH}/dockerfiles/celery-service.dockerfile
+      dockerfile: ${DEV_PATH}/dockerfiles/py27.dockerfile
       args:
         << : *default-args
         service_path: ./chronotrigger
@@ -88,8 +88,8 @@ services:
   memento:
     build:
       context: ../
-      dockerfile: ${DEV_PATH}/dockerfiles/celery36-service.dockerfile
-      # dockerfile: ${DEV_PATH}/dockerfiles/celery-service.dockerfile
+      dockerfile: ${DEV_PATH}/dockerfiles/py36.dockerfile
+      # dockerfile: ${DEV_PATH}/dockerfiles/py27.dockerfile
       args:
         << : *default-args
         service_path: ./memento
@@ -110,7 +110,7 @@ services:
   moonshine-api:
     build:
       context: ../
-      dockerfile: ${DEV_PATH}/dockerfiles/django-service.dockerfile
+      dockerfile: ${DEV_PATH}/dockerfiles/py27.dockerfile
       args:
         << : *default-args
         service_path: ./moonshine-api
@@ -135,7 +135,7 @@ services:
   moonshine-celery:
     build:
       context: ../
-      dockerfile: ${DEV_PATH}/dockerfiles/celery-service.dockerfile
+      dockerfile: ${DEV_PATH}/dockerfiles/py27.dockerfile
       args:
         << : *default-args
         service_path: ./moonshine-celery
@@ -160,7 +160,7 @@ services:
   relay:
     build:
       context: ../
-      dockerfile: ${DEV_PATH}/dockerfiles/celery-service.dockerfile
+      dockerfile: ${DEV_PATH}/dockerfiles/py27.dockerfile
       args:
         << : *default-args
         service_path: ./relay
