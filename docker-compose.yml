@@ -37,8 +37,8 @@ services:
     logging: *default-logging
     ports: ['8002:8002']
     volumes:
-      - ../abtesting-service:/usr/src/app
       - *ignore-venv
+      # - ../abtesting-service:/usr/src/app
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
   chrono:
@@ -59,8 +59,8 @@ services:
     logging: *default-logging
     ports: ['8001:8001']
     volumes:
-      - ../chronotrigger:/usr/src/app
       - *ignore-venv
+      # - ../chronotrigger:/usr/src/app
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
   chrono-celery:
@@ -81,8 +81,8 @@ services:
       - rabbitmq
     logging: *default-logging
     volumes:
-      - ../chronotrigger:/usr/src/app
       - *ignore-venv
+      - ../chronotrigger:/usr/src/app
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
   memento:
@@ -103,8 +103,8 @@ services:
       - rabbitmq
     logging: *default-logging
     volumes:
-      - ../memento:/usr/src/app
       - *ignore-venv
+      - ../memento:/usr/src/app
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
   moonshine-api:
@@ -126,8 +126,8 @@ services:
     logging: *default-logging
     ports: ['8000:8000']
     volumes:
-      - ../moonshine-api:/usr/src/app
       - *ignore-venv
+      # - ../moonshine-api:/usr/src/app
       # - ../moonshine-core/:/usr/src/libraries/moonshine-core
       # - ../relay-models/:/usr/src/libraries/relay-models
       # - ../woodhouse/:/usr/src/libraries/woodhouse
@@ -150,8 +150,8 @@ services:
       - abtesting-service
     logging: *default-logging
     volumes:
-      - ../moonshine-celery:/usr/src/app
       - *ignore-venv
+      - ../moonshine-celery:/usr/src/app
       # - ../moonshine-core/:/usr/src/libraries/abtesting
       # - ../moonshine-core/:/usr/src/libraries/moonshine-core
       # - ../relay-models/:/usr/src/libraries/relay-models
@@ -173,8 +173,8 @@ services:
       - rabbitmq
     logging: *default-logging
     volumes:
-      - ../relay:/usr/src/app
       - *ignore-venv
+      - ../relay:/usr/src/app
       # - ../relay-models/:/usr/src/libraries/relay-models
       # - ../woodhouse/:/usr/src/libraries/woodhouse
 
