@@ -27,9 +27,9 @@ docker-compose exec chrono ./manage.py migrate
 docker-compose exec moonshine-api ./manage.py migrate
 
 heading 'Create admin users'
-docker-compose exec abtesting-service bash -c 'echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('"'admin'"', '"'admin@example.com'"', '"'pass'"')" | python manage.py shell'
-docker-compose exec chrono bash -c 'echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('"'admin'"', '"'admin@example.com'"', '"'pass'"')" | python manage.py shell'
-docker-compose exec moonshine-api bash -c 'echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('"'admin'"', '"'admin@example.com'"', '"'pass'"')" | python manage.py shell'
+docker-compose exec abtesting-service bash -c 'echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('"'admin'"', '"'admin@example.com'"', '"'pass'"')" | python manage.py shell' &> /dev/null
+docker-compose exec chrono bash -c 'echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('"'admin'"', '"'admin@example.com'"', '"'pass'"')" | python manage.py shell' &> /dev/null
+docker-compose exec moonshine-api bash -c 'echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('"'admin'"', '"'admin@example.com'"', '"'pass'"')" | python manage.py shell' &> /dev/null
 
 heading 'Generate oauth app keys'
 docker-compose exec abtesting-service bash -c 'echo "from oauth2_provider.models import Application; Application.objects.create(client_id='"'abtesting-service-client-id'"', client_secret='"'abtesting-service-secret'"', user_id=1, client_type='"'public'"', name='"'admin app'"', authorization_grant_type='"'client-credentials'"')" | python manage.py shell'
