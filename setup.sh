@@ -37,5 +37,4 @@ docker-compose run --rm moonshine-api bash -c 'echo "from oauth2_provider.models
 heading 'Import adventures for moonshine-api'
 docker-compose run --rm moonshine-api bash -c 'export PYTHONPATH=/usr/src/app && python feed/import_all.py env=dev'
 
-docker-compose stop
 heading 'done!'
