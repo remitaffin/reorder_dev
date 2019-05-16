@@ -36,7 +36,8 @@ COPY $service_path/requirements.txt ./
 RUN pip install -r requirements.txt
 RUN pip install watchdog ipython ptvsd prospector autopep8 rope pytest
 
-COPY $service_path .
+# Copy app to folder
+# COPY $service_path .
 
 # copy default endpoint specific user settings overrides into container to specify Python path/
 COPY $dev_path/config/settings.vscode.json /root/.vscode-remote/data/Machine/settings.json
