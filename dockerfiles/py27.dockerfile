@@ -9,6 +9,9 @@ ARG SSH_PRIV_KEY
 
 WORKDIR $CODE_PATH/app
 
+RUN apt-get update && apt-get install -y \
+    vim
+
 # copy entrypoint
 COPY $dev_path/entry.sh $CODE_PATH/entry.sh
 RUN chmod +x $CODE_PATH/entry.sh
@@ -44,6 +47,11 @@ COPY $dev_path/config/settings.vscode.json /root/.vscode-remote/data/Machine/set
 
 # git
 COPY $dev_path/config/gitignore /root/.config/git/ignore
+
+# temp fix
+# https://code.visualstudio.com/docs/remote/troubleshooting#_errors-storing-extension-data
+RUN mkdir -p "/root/.config/Code - Insiders/User"
+RUN touch "/root/.config/Code - Insiders/User/settings.json"
 
 # CMD ["python", "manage.py", "runserver"]
 # CMD ["celery", "worker", "--app", "celery_app", "-l" "info"]
