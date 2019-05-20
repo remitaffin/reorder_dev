@@ -46,6 +46,7 @@ RUN pip install watchdog ipython ptvsd prospector autopep8 rope pytest
 COPY $dev_path/config/settings.vscode.json /root/.vscode-remote/data/Machine/settings.json
 
 # git
+COPY $dev_path/config/gitconfig /root/.config/git/config
 COPY $dev_path/config/gitignore /root/.config/git/ignore
 
 # temp fix
