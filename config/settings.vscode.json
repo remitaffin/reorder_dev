@@ -1,4 +1,5 @@
 {
     "python.pythonPath": "/usr/local/bin/python",
     "python.testing.pyTestEnabled": true,
+    "terminal.integrated.shell.linux": "/bin/bash",
 }
