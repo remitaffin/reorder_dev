@@ -89,7 +89,6 @@ services:
     build:
       context: ../
       dockerfile: ${DEV_PATH}/dockerfiles/py36.dockerfile
-      # dockerfile: ${DEV_PATH}/dockerfiles/py27.dockerfile
       args:
         << : *default-args
         service_path: ./memento
